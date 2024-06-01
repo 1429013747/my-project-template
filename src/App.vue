@@ -4,23 +4,23 @@
     <div>
       <router-link to="/home">首页</router-link>
       <router-link to="/login">登录</router-link>
-      <router-link to="/about">关于</router-link>
     </div>
-    <img alt="Vue logo" src="./assets/img/logo.png" />
-    <HelloWorld msg="a coderwhy vue template" />
+    <img alt="Vue logo" src="./assets/img/logo.png">
+    <HelloWorld msg="a coderwhy vue template"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "components/HelloWorld.vue";
+import HelloWorld from 'components/HelloWorld.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld,
+    HelloWorld
   },
-  created: function() {},
-};
+  created: function() {
+  }
+}
 </script>
 
 <style>
