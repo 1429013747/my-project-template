@@ -1,6 +1,16 @@
 module.exports = {
+  publicPath: "/",
   configureWebpack: (config) => {
-    config.devtool = "source-map";
+    //区分环境
+    if (process.env.NODE_ENV === "production") {
+      // 为生产环境修改配置...
+      config.mode = "production";
+      config.devtool = "none";
+    } else {
+      //为开发环境修改配置...
+      config.mode = "development";
+      config.devtool = "source-map";
+    }
     Object.assign(config.resolve.alias, {
       components: "@/components",
       content: "components/content",
