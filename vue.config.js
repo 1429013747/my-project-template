@@ -1,6 +1,16 @@
 module.exports = {
   publicPath: "/",
   outputDir: "dist",
+  devServer: {
+    proxy: {
+      "/": {
+        target: "http://localhost:8080",
+        ws: true, // 是否启用websockets
+        changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
+        pathRewrite: {},
+      },
+    },
+  },
   configureWebpack: (config) => {
     //区分环境
     if (process.env.NODE_ENV === "production") {

@@ -1,6 +1,6 @@
 import * as types from "./types.js";
 export default {
-  namespaced: true,
+  namespaced: true, // 使模块具有命名空间
   state: {
     testHomeValue: "testHomeValue",
   },
