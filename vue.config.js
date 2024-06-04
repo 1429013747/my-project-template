@@ -1,5 +1,6 @@
 module.exports = {
   publicPath: "/",
+  outputDir: "dists",
   configureWebpack: (config) => {
     //区分环境
     if (process.env.NODE_ENV === "production") {
