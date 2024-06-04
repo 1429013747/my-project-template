@@ -1,13 +1,8 @@
-import * as types from './types.js'
+import * as types from "./types.js";
 export default {
   namespaced: true,
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  getters: {
-  }
-}
-
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+};
