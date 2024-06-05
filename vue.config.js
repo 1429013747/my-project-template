@@ -1,13 +1,17 @@
 module.exports = {
-  publicPath: "/",
-  outputDir: "dist",
+  publicPath: "/", // 部署应用包时的基本 URL
+  outputDir: "dist", // 打包生成的生产环境构建文件的目录
+  assetsDir: "static", // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录
+  indexPath: "index.html", // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径
   devServer: {
     proxy: {
-      "/": {
+      "/api": {
         target: "http://localhost:8080",
         ws: true, // 是否启用websockets
         changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
-        pathRewrite: {},
+        pathRewrite: {
+          "^/api": "",
+        },
       },
     },
   },
@@ -17,6 +21,16 @@ module.exports = {
       // 为生产环境修改配置...
       config.mode = "production";
       config.devtool = "none";
+      // const plugins = [
+      //   new CompressionPlugin({
+      //     algorithm: "gzip", // 使用gzip压缩
+      //     test: /\.js$|\.html$|\.css$/, // 匹配文件名
+      //     filename: "[path].gz[query]", // 压缩后的文件名(保持原文件名，后缀加.gz)
+      //     minRatio: 1, // 压缩率小于1才会压缩
+      //     threshold: 10240, // 对超过10k的数据压缩
+      //     deleteOriginalAssets: false, // 是否删除未压缩的源文件，谨慎设置，如果希望提供非gzip的资源，可不设置或者设置为false（比如删除打包后的gz后还可以加载到原始资源文件）
+      //   }),
+      // ];
     } else {
       //为开发环境修改配置...
       config.mode = "development";
