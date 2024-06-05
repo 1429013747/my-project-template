@@ -5,12 +5,19 @@ module.exports = {
   indexPath: "index.html", // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径
   devServer: {
     proxy: {
-      "/api": {
-        target: "http://localhost:8080",
+      "/dev-blue": {
+        target: "http://localhost:3000",
         ws: true, // 是否启用websockets
         changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
         pathRewrite: {
-          "^/api": "",
+          "^/dev-blue": "",
+        },
+        onProxyReq(proxyReq) {
+          //proxyReq转字符串
+          const key = Object.keys(proxyReq.agent.sockets);
+          const port = key[0].match(/\d{4}/g);
+          const { path, host, protocol } = proxyReq;
+          console.log("===>>>", `${protocol}//${host + ":" + port + path}`);
         },
       },
     },
